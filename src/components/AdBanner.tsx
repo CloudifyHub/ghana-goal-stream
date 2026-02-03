@@ -6,7 +6,7 @@ export function AdBanner() {
     <section className="py-6">
       <div className="container">
         <a 
-          href="https://getdatagh.com" 
+          href="https://www.getdatagh.com/buy?v=JK0100" 
           target="_blank" 
           rel="noopener noreferrer"
           className="block group"
