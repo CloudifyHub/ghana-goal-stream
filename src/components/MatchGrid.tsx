@@ -7,9 +7,10 @@ interface MatchGridProps {
   sport: string;
   onWatch: (match: Match) => void;
   filter?: 'all' | 'live' | 'upcoming';
+  searchQuery?: string;
 }
 
-export function MatchGrid({ sport, onWatch, filter = 'all' }: MatchGridProps) {
+export function MatchGrid({ sport, onWatch, filter = 'all', searchQuery = '' }: MatchGridProps) {
   const { data: matches, isLoading, error, refetch } = useMatches(sport);
 
   if (isLoading) {
@@ -48,6 +49,17 @@ export function MatchGrid({ sport, onWatch, filter = 'all' }: MatchGridProps) {
   // Filter and sort matches
   let filteredMatches = [...matches];
   
+  // Apply search filter
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase().trim();
+    filteredMatches = filteredMatches.filter(m => {
+      const homeTeam = m.teams?.home?.name?.toLowerCase() || '';
+      const awayTeam = m.teams?.away?.name?.toLowerCase() || '';
+      const title = m.title.toLowerCase();
+      return homeTeam.includes(query) || awayTeam.includes(query) || title.includes(query);
+    });
+  }
+  
   if (filter === 'live') {
     filteredMatches = filteredMatches.filter(m => isMatchLive(m.date));
   } else if (filter === 'upcoming') {
@@ -68,7 +80,11 @@ export function MatchGrid({ sport, onWatch, filter = 'all' }: MatchGridProps) {
       <div className="flex flex-col items-center justify-center py-16 gap-4">
         <Radio className="h-10 w-10 text-muted-foreground" />
         <p className="text-muted-foreground text-sm">
-          {filter === 'live' ? 'No live matches right now' : 'No upcoming matches'}
+          {searchQuery.trim() 
+            ? `No matches found for "${searchQuery}"`
+            : filter === 'live' 
+              ? 'No live matches right now' 
+              : 'No upcoming matches'}
         </p>
       </div>
     );
