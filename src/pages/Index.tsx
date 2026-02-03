@@ -5,6 +5,7 @@ import { SportTabs } from '@/components/SportTabs';
 import { MatchGrid } from '@/components/MatchGrid';
 import { StreamModal } from '@/components/StreamModal';
 import { Footer } from '@/components/Footer';
+import { AdBanner } from '@/components/AdBanner';
 import type { Match } from '@/lib/api';
 
 const Index = () => {
@@ -26,6 +27,9 @@ const Index = () => {
       <main className="flex-1">
         {/* Hero */}
         <HeroSection />
+
+        {/* Ad Banner */}
+        <AdBanner />
 
         {/* Main Content */}
         <section id="matches" className="py-12">
