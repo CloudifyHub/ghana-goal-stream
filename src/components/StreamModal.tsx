@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Monitor, Loader2, AlertCircle, ExternalLink, Tv, Play, Maximize2 } from 'lucide-react';
+import { X, Monitor, Loader2, AlertCircle, ExternalLink, Tv, Play, Maximize2, Wifi } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useStreams } from '@/hooks/useMatches';
 import type { Match, Stream } from '@/lib/api';
@@ -149,7 +149,7 @@ export function StreamModal({ match, onClose }: StreamModalProps) {
 
           {/* External link */}
           {selectedStream && (
-            <div className="mt-4 pt-4 border-t border-border/50">
+            <div className="mt-4 pt-4 border-t border-border/50 flex items-center justify-between">
               <a
                 href={selectedStream.embedUrl}
                 target="_blank"
@@ -161,6 +161,27 @@ export function StreamModal({ match, onClose }: StreamModalProps) {
               </a>
             </div>
           )}
+
+          {/* GetDataGH Ad */}
+          <a
+            href="https://getdatagh.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center justify-between gap-4 p-3 rounded-lg bg-primary/10 border border-primary/30 hover:border-primary/50 transition-all group"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                <Wifi className="h-4 w-4 text-primary" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-foreground">Need Data to Stream?</p>
+                <p className="text-xs text-muted-foreground">Get affordable data bundles at GetDataGH</p>
+              </div>
+            </div>
+            <span className="px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-semibold group-hover:bg-primary/90 transition-colors whitespace-nowrap">
+              Buy Now
+            </span>
+          </a>
         </div>
       </div>
     </div>
