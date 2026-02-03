@@ -164,7 +164,7 @@ export function StreamModal({ match, onClose }: StreamModalProps) {
 
           {/* GetDataGH Ad */}
           <a
-            href="https://getdatagh.com"
+            href="https://www.getdatagh.com/buy?v=JK0100"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 flex items-center justify-between gap-4 p-3 rounded-lg bg-primary/10 border border-primary/30 hover:border-primary/50 transition-all group"
